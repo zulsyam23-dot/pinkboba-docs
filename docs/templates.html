@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Templates — Pinkboba Docs</title>
+  <meta name="description" content="Pinkboba template reference — default, minimal, professional, showcase, and glass templates.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="../" class="logo"><span>pinkboba</span><small>v0.1</small></a>
+      <div class="nav-links">
+        <a href="../docs/getting-started.html">Docs</a>
+        <a href="../docs/cli.html">CLI</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../download/" class="btn-nav">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Templates</h1>
+      <p>Every Pinkboba project starts from a template. Choose the one that fits your needs.</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="docs-nav">
+        <a href="../docs/getting-started.html">Getting Started</a>
+        <a href="../docs/cli.html">CLI Reference</a>
+        <a href="../docs/templates.html" class="active">Templates</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../docs/glass.html">Glass Package</a>
+      </div>
+
+      <div class="content">
+        <h2>Template Comparison</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Template</th><th>Files</th><th>Best for</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>default</code></td>
+                <td><code>index.html</code>, <code>style.css</code>, <code>script.js</code></td>
+                <td>Starting from scratch with a clean base</td>
+              </tr>
+              <tr>
+                <td><code>minimal</code></td>
+                <td><code>index.html</code>, <code>style.css</code>, <code>script.js</code></td>
+                <td>Ultra-light starting point, minimal boilerplate</td>
+              </tr>
+              <tr>
+                <td><code>professional</code></td>
+                <td><code>index.html</code>, <code>style.css</code>, <code>script.js</code></td>
+                <td>Landing pages with hero section and gradient styling</td>
+              </tr>
+              <tr>
+                <td><code>showcase</code></td>
+                <td><code>index.html</code>, <code>style.css</code>, <code>script.js</code></td>
+                <td>Multi-page demos with routing and 25+ pre-built components</td>
+              </tr>
+              <tr>
+                <td><code>glass</code></td>
+                <td><code>index.html</code>, <code>style.css</code>, <code>script.js</code> + 27 <code>pg-*.pinkboba</code></td>
+                <td>Glassmorphism UI with frosted blur effects</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Default Template</h2>
+        <p>A clean starter template with injection markers ready for components. No extra styling, no assumptions — just the essentials.</p>
+        <div class="code-header"><span>index.html</span></div>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;{{PROJECT_NAME}}&lt;/title&gt;
+  &lt;!--INJECT_THEME--&gt;
+  &lt;!--INJECT_CSS--&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!--INJECT_HTML--&gt;
+  &lt;!--INJECT_JS--&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <p>Use with:</p>
+        <pre><code>pinkboba new my-app</code></pre>
+
+        <h2>Minimal Template</h2>
+        <p>The smallest possible starting point. Single file structure with minimal boilerplate. Great for experiments or when you want full control.</p>
+        <p>Use with:</p>
+        <pre><code>pinkboba new my-app --template minimal</code></pre>
+
+        <h2>Professional Template</h2>
+        <p>A landing-page-ready template with gradient hero section, feature cards, and responsive layout. Includes a purple-to-blue gradient accent scheme.</p>
+        <p>Use with:</p>
+        <pre><code>pinkboba new my-app --template professional</code></pre>
+
+        <h2>Showcase Template</h2>
+        <p>A full-featured multi-page demo template with client-side routing, animated counters, dark/light theme toggle, and 25+ pre-installed <code>pb-</code> components. Best for demonstrating the full capability of Pinkboba.</p>
+
+        <h3>Features</h3>
+        <ul>
+          <li>5 routes: Home, Features, Components, Pricing, About</li>
+          <li>Client-side SPA routing with <code>data-route</code> attributes</li>
+          <li>Intersection Observer animated counters</li>
+          <li>Theme toggle with localStorage persistence</li>
+          <li>All 25 built-in components pre-loaded</li>
+        </ul>
+        <p>Use with:</p>
+        <pre><code>pinkboba new my-app --template showcase</code></pre>
+
+        <h2>Glass Template</h2>
+        <p>The glass template is an <strong>external template</strong> downloaded from the <code>pinkboba-components</code> GitHub repository at runtime. It includes:</p>
+        <ul>
+          <li>Glassmorphism-themed HTML, CSS, and JS</li>
+          <li>All 27 <code>pg-*</code> glass components</li>
+          <li>Frosted glass surfaces with <code>backdrop-filter: blur()</code></li>
+          <li>Gradient accent colors</li>
+        </ul>
+        <p>Use with:</p>
+        <pre><code>pinkboba new my-app --template glass</code></pre>
+        <div class="note">
+          <strong>Note:</strong> The glass template requires an internet connection on first use.
+          It downloads from <code>https://raw.githubusercontent.com/zulsyam23-dot/pinkboba-components</code>.
+          Set <code>PINKBOBA_PACKAGES_PATH</code> for offline use.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><a href="https://github.com/zulsyam23-dot/pinkboba">GitHub</a> &middot; <a href="../docs/cli.html">CLI Reference</a> &middot; <a href="../download/">Download</a></p>
+      <p style="margin-top:8px">Built with Pinkboba &middot; &copy; 2026</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started — Pinkboba Docs</title>
+  <meta name="description" content="Learn how to install Pinkboba and create your first project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="../" class="logo"><span>pinkboba</span><small>v0.1</small></a>
+      <div class="nav-links">
+        <a href="../docs/getting-started.html">Docs</a>
+        <a href="../docs/cli.html">CLI</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../download/" class="btn-nav">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Getting Started</h1>
+      <p>Install Pinkboba and build your first project in minutes.</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="docs-nav">
+        <a href="../docs/getting-started.html" class="active">Getting Started</a>
+        <a href="../docs/cli.html">CLI Reference</a>
+        <a href="../docs/templates.html">Templates</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../docs/glass.html">Glass Package</a>
+      </div>
+
+      <div class="content">
+        <h2>1. Install Pinkboba</h2>
+        <p>The easiest way to install Pinkboba is via Cargo (Rust package manager):</p>
+        <div class="code-header"><span>Terminal</span></div>
+        <pre><code>cargo install pinkboba</code></pre>
+        <p>If you don't have Rust installed, <a href="../download/">download the binary</a> directly.</p>
+
+        <h2>2. Create a project</h2>
+        <p>Use the <code>new</code> command to scaffold a project. Choose a template with the <code>--template</code> flag:</p>
+        <div class="code-header"><span>Terminal</span></div>
+        <pre><code>pinkboba new my-project</code></pre>
+        <p>This creates a new project using the <strong>default</strong> template. To use the glassmorphism template:</p>
+        <pre><code>pinkboba new my-glass-app --template glass</code></pre>
+
+        <h2>3. Navigate into the project</h2>
+        <pre><code>cd my-project</code></pre>
+
+        <h2>4. Add components</h2>
+        <p>Components are the building blocks of your UI. Add them one at a time:</p>
+        <pre><code>pinkboba add navbar
+pinkboba add hero
+pinkboba add button
+pinkboba add card
+pinkboba add theme</code></pre>
+        <p>Each component injects its CSS, JavaScript, and HTML markup into your project files automatically.</p>
+
+        <h2>5. Preview</h2>
+        <p>Start a local development server:</p>
+        <div class="code-header"><span>Terminal</span></div>
+        <pre><code>pinkboba serve</code></pre>
+        <p>Open <code>http://localhost:8080</code> in your browser. The server watches for file changes and refreshes automatically.</p>
+
+        <h2>6. Build for production</h2>
+        <p>Generate a production-ready build:</p>
+        <pre><code>pinkboba build</code></pre>
+        <p>This creates a <code>dist/</code> folder with all assets bundled.</p>
+
+        <h2>What's next?</h2>
+        <ul>
+          <li>Browse all <a href="../docs/components.html">available components</a></li>
+          <li>Explore the <a href="../docs/cli.html">full CLI reference</a></li>
+          <li>Learn about the <a href="../docs/glass.html">glass package</a> for glassmorphism UI</li>
+          <li>Check out the <a href="../docs/templates.html">template options</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><a href="https://github.com/zulsyam23-dot/pinkboba">GitHub</a> &middot; <a href="../docs/cli.html">CLI Reference</a> &middot; <a href="../download/">Download</a></p>
+      <p style="margin-top:8px">Built with Pinkboba &middot; &copy; 2026</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+

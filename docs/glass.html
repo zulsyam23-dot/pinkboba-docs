@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glass Package — Pinkboba Docs</title>
+  <meta name="description" content="Documentation for the Pinkboba glass package — 27 glassmorphism UI components.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="../" class="logo"><span>pinkboba</span><small>v0.1</small></a>
+      <div class="nav-links">
+        <a href="../docs/getting-started.html">Docs</a>
+        <a href="../docs/cli.html">CLI</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../download/" class="btn-nav">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Glass Package</h1>
+      <p>27 glassmorphism UI components with frosted glass surfaces, blur effects, and gradient accents.</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="docs-nav">
+        <a href="../docs/getting-started.html">Getting Started</a>
+        <a href="../docs/cli.html">CLI Reference</a>
+        <a href="../docs/templates.html">Templates</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../docs/glass.html" class="active">Glass Package</a>
+      </div>
+
+      <div class="content">
+        <h2>Overview</h2>
+        <p>The <strong>glass</strong> package is an external component collection that brings glassmorphism design to your Pinkboba projects. All components use the <code>pg-</code> prefix and feature:</p>
+        <ul>
+          <li><code>backdrop-filter: blur(20px)</code> — frosted glass effect</li>
+          <li>Semi-transparent <code>rgba()</code> backgrounds</li>
+          <li>Gradient accent colors (purple <code>#7c6cf0</code> and pink <code>#f06c9a</code>)</li>
+          <li>Dark theme optimized color schemes</li>
+          <li>Subtle border highlights with <code>rgba(255,255,255,0.08)</code></li>
+        </ul>
+        <p>The package is hosted on <a href="https://github.com/zulsyam23-dot/pinkboba-components">GitHub</a> and downloaded at runtime — no recompilation needed.</p>
+
+        <h2>Installation</h2>
+        <div class="code-header"><span>Terminal</span></div>
+        <pre><code># Install all glass components in an existing project
+pinkboba add glass</code></pre>
+        <p>Or create a new project with the glass template (includes all 27 components):</p>
+        <pre><code>pinkboba new my-app --template glass</code></pre>
+
+        <h2>All Glass Components</h2>
+        <div class="comp-grid" style="margin:24px 0">
+          <div class="glass comp-item">
+            <strong>pg-accordion</strong>
+            <span class="tag">Collapsible sections</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-alert</strong>
+            <span class="tag">Notification banners</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-avatar</strong>
+            <span class="tag">User profile images</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-badge</strong>
+            <span class="tag">Status indicators</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-breadcrumb</strong>
+            <span class="tag">Navigation trails</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-button</strong>
+            <span class="tag">Styled buttons</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-card</strong>
+            <span class="tag">Content containers</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-dropdown</strong>
+            <span class="tag">Menu dropdowns</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-file-upload</strong>
+            <span class="tag">File picker</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-footer</strong>
+            <span class="tag">Page footer</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-form-login</strong>
+            <span class="tag">Login form</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-form-signup</strong>
+            <span class="tag">Signup form</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-hero</strong>
+            <span class="tag">Hero section</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-input</strong>
+            <span class="tag">Text input</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-loading</strong>
+            <span class="tag">Spinners & loaders</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-modal</strong>
+            <span class="tag">Modal dialogs</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-navbar</strong>
+            <span class="tag">Navigation bar</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-oauth</strong>
+            <span class="tag">OAuth buttons</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-otp</strong>
+            <span class="tag">OTP input</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-pagination</strong>
+            <span class="tag">Page navigation</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-progress-bar</strong>
+            <span class="tag">Progress indicator</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-table</strong>
+            <span class="tag">Data tables</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-tabs</strong>
+            <span class="tag">Tab panels</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-theme</strong>
+            <span class="tag">Theme toggle</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-toast</strong>
+            <span class="tag">Toast notifications</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-toggle</strong>
+            <span class="tag">Toggle switch</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pg-tooltip</strong>
+            <span class="tag">Tooltips</span>
+          </div>
+        </div>
+
+        <h2>Glass Styling Reference</h2>
+        <p>Every glass component follows this styling pattern:</p>
+        <pre><code>/* Core glass effect */
+background: rgba(255, 255, 255, 0.06);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 12px;
+
+/* Text colors */
+color: #e8e8f0;
+
+/* Accent gradient */
+background: linear-gradient(135deg, #7c6cf0, #f06c9a);</code></pre>
+
+        <h2>Offline Development</h2>
+        <p>To use the glass package without internet access, clone the repository and set the environment variable:</p>
+        <div class="code-header"><span>Terminal</span></div>
+        <pre><code>git clone https://github.com/zulsyam23-dot/pinkboba-components.git
+
+# PowerShell
+$env:PINKBOBA_PACKAGES_PATH = "C:\path\to\pinkboba-components"
+
+# CMD
+set PINKBOBA_PACKAGES_PATH=C:\path\to\pinkboba-components</code></pre>
+        <p>Pinkboba will look for packages at <code>$PINKBOBA_PACKAGES_PATH/glass/</code> instead of fetching from GitHub.</p>
+
+        <h2>Source Code</h2>
+        <p>The glass package source is available on GitHub:</p>
+        <pre><code>https://github.com/zulsyam23-dot/pinkboba-components/tree/master/glass</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><a href="https://github.com/zulsyam23-dot/pinkboba">GitHub</a> &middot; <a href="../docs/cli.html">CLI Reference</a> &middot; <a href="../download/">Download</a></p>
+      <p style="margin-top:8px">Built with Pinkboba &middot; &copy; 2026</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+

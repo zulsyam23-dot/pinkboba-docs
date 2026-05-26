@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLI Reference — Pinkboba Docs</title>
+  <meta name="description" content="Complete Pinkboba CLI command reference.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="../" class="logo"><span>pinkboba</span><small>v0.1</small></a>
+      <div class="nav-links">
+        <a href="../docs/getting-started.html">Docs</a>
+        <a href="../docs/cli.html">CLI</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../download/" class="btn-nav">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>CLI Reference</h1>
+      <p>Complete documentation for the <code>pinkboba</code> command-line interface.</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="docs-nav">
+        <a href="../docs/getting-started.html">Getting Started</a>
+        <a href="../docs/cli.html" class="active">CLI Reference</a>
+        <a href="../docs/templates.html">Templates</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../docs/glass.html">Glass Package</a>
+      </div>
+
+      <div class="content">
+        <h2>Usage</h2>
+        <pre><code>pinkboba &lt;COMMAND&gt; [OPTIONS]</code></pre>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Command</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>new</code></td><td>Create a new project from a template</td></tr>
+              <tr><td><code>add</code></td><td>Add a component or package to the current project</td></tr>
+              <tr><td><code>remove</code></td><td>Remove a component or dependency</td></tr>
+              <tr><td><code>component</code></td><td>Generate a single component's output</td></tr>
+              <tr><td><code>build</code></td><td>Build the project for production</td></tr>
+              <tr><td><code>serve</code></td><td>Start a development server with live reload</td></tr>
+              <tr><td><code>help</code></td><td>Print help information</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>pinkboba new</h2>
+        <p>Scaffolds a new project from a built-in or external template.</p>
+        <pre><code>pinkboba new [OPTIONS] &lt;NAME&gt;
+
+Arguments:
+  &lt;NAME&gt;  Project name (creates a directory with this name)
+
+Options:
+  -t, --template &lt;TEMPLATE&gt;  Template to use [default: default]
+  -h, --help                 Print help</code></pre>
+
+        <h3>Available Templates</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Template</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>default</code></td><td>Standard starter template with basic structure</td></tr>
+              <tr><td><code>minimal</code></td><td>Minimal template with only essential files</td></tr>
+              <tr><td><code>professional</code></td><td>Professional layout with hero, features, and gradient styling</td></tr>
+              <tr><td><code>showcase</code></td><td>Multi-page showcase with routing, counters, and 25+ pre-built components</td></tr>
+              <tr><td><code>glass</code></td><td>Glassmorphism template with 27 glass components (downloaded from GitHub)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Examples</h3>
+        <pre><code># Create with default template
+pinkboba new my-app
+
+# Create with professional template
+pinkboba new my-app --template professional
+
+# Create with glass template (downloads from GitHub)
+pinkboba new my-app --template glass</code></pre>
+
+        <h2>pinkboba add</h2>
+        <p>Adds a component or external package to the current project. Components are downloaded and injected into your project files.</p>
+        <pre><code>pinkboba add &lt;PACKAGE&gt;
+
+Arguments:
+  &lt;PACKAGE&gt;  Component name (e.g. navbar) or package name (e.g. glass)
+
+Options:
+  -v, --version &lt;VERSION&gt;  Package version (for external packages)
+  -h, --help               Print help</code></pre>
+
+        <h3>Built-in Components</h3>
+        <p>These are available directly — no download needed:</p>
+        <div class="comp-grid" style="margin-bottom:20px">
+          <div class="glass comp-item">accordion</div>
+          <div class="glass comp-item">alert</div>
+          <div class="glass comp-item">avatar</div>
+          <div class="glass comp-item">badge</div>
+          <div class="glass comp-item">breadcrumb</div>
+          <div class="glass comp-item">button</div>
+          <div class="glass comp-item">card</div>
+          <div class="glass comp-item">dropdown</div>
+          <div class="glass comp-item">file-upload</div>
+          <div class="glass comp-item">footer</div>
+          <div class="glass comp-item">form-login</div>
+          <div class="glass comp-item">form-signup</div>
+          <div class="glass comp-item">hero</div>
+          <div class="glass comp-item">input</div>
+          <div class="glass comp-item">loading</div>
+          <div class="glass comp-item">modal</div>
+          <div class="glass comp-item">navbar</div>
+          <div class="glass comp-item">oauth</div>
+          <div class="glass comp-item">otp</div>
+          <div class="glass comp-item">pagination</div>
+          <div class="glass comp-item">progress-bar</div>
+          <div class="glass comp-item">table</div>
+          <div class="glass comp-item">tabs</div>
+          <div class="glass comp-item">theme</div>
+          <div class="glass comp-item">toast</div>
+          <div class="glass comp-item">toggle</div>
+          <div class="glass comp-item">tooltip</div>
+        </div>
+
+        <h3>External Packages</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Package</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>glass</code></td><td>27 glassmorphism components with <code>pg-</code> prefix. Download from GitHub at runtime.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Examples</h3>
+        <pre><code># Add a built-in component
+pinkboba add navbar
+pinkboba add card
+pinkboba add theme
+
+# Add an external package
+pinkboba add glass</code></pre>
+
+        <h2>pinkboba remove</h2>
+        <p>Removes a component or dependency from the current project.</p>
+        <pre><code>pinkboba remove &lt;SUBCOMMAND&gt;
+
+Subcommands:
+  component     Remove a component from the project
+  dependency    Remove a project dependency
+  help          Print help</code></pre>
+
+        <h3>Examples</h3>
+        <pre><code># Remove a component
+pinkboba remove component navbar
+
+# Remove a dependency
+pinkboba remove dependency glass</code></pre>
+
+        <h2>pinkboba component</h2>
+        <p>Generates a single component's CSS, JS, and HTML output without adding it to a project. Useful for previewing or extracting component code.</p>
+        <pre><code>pinkboba component &lt;COMPONENT&gt;
+
+Available Components:
+  accordion    alert       avatar     badge      breadcrumb
+  button       card        dropdown   file-upload footer
+  form-login   form-signup hero       input      loading
+  modal        navbar      oauth      otp        pagination
+  progress-bar table       tabs       theme      toast
+  toggle       tooltip</code></pre>
+
+        <h3>Examples</h3>
+        <pre><code># Preview a button component
+pinkboba component button</code></pre>
+
+        <h2>pinkboba build</h2>
+        <p>Builds the project for production. Creates a <code>dist/</code> directory with optimized output.</p>
+        <pre><code>pinkboba build</code></pre>
+
+        <h2>pinkboba serve</h2>
+        <p>Starts a local development server on <code>http://localhost:8080</code> with automatic reload on file changes.</p>
+        <pre><code>pinkboba serve</code></pre>
+
+        <h2>Environment Variables</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Variable</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>PINKBOBA_PACKAGES_PATH</code></td>
+                <td>
+                  Local path to external packages directory. When set, Pinkboba loads packages from this path instead of GitHub.
+                  Useful for offline development or testing custom packages.
+                  <br><br>
+                  <strong>Example:</strong>
+                  <pre style="margin:8px 0 0"><code>$env:PINKBOBA_PACKAGES_PATH = "C:\Users\You\pinkboba-components"</code></pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><a href="https://github.com/zulsyam23-dot/pinkboba">GitHub</a> &middot; <a href="../docs/cli.html">CLI Reference</a> &middot; <a href="../download/">Download</a></p>
+      <p style="margin-top:8px">Built with Pinkboba &middot; &copy; 2026</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+

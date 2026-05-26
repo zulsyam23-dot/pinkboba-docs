@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Pinkboba</title>
+  <meta name="description" content="Download the latest Pinkboba CLI for Windows.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="../" class="logo"><span>pinkboba</span><small>v0.1</small></a>
+      <div class="nav-links">
+        <a href="../docs/getting-started.html">Docs</a>
+        <a href="../docs/cli.html">CLI</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../download/" class="btn-nav">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Download</h1>
+      <p>Get the latest Pinkboba binary for Windows.</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="glass" style="padding:32px;text-align:center;margin-bottom:32px">
+        <div style="font-size:3rem;margin-bottom:12px">🪟</div>
+        <h2 style="margin-bottom:8px">pinkboba.exe</h2>
+        <p style="color:var(--pg-text-muted);margin-bottom:24px">v0.1.0 &middot; Windows (x86_64)</p>
+        <a href="#" class="btn btn-primary" style="font-size:1rem;padding:14px 36px">
+          ⬇ Download pinkboba.exe
+        </a>
+        <p style="margin-top:16px;font-size:0.85rem;color:var(--pg-text-muted)">
+          No installer needed. Just download and run.
+        </p>
+      </div>
+
+      <h2>Installation Options</h2>
+
+      <h3>Option 1: Via Cargo (requires Rust)</h3>
+      <div class="code-header"><span>Terminal</span></div>
+      <pre><code>cargo install pinkboba</code></pre>
+
+      <h3>Option 2: Manual (no Rust)</h3>
+      <ol style="margin:12px 0;padding-left:24px;color:#d0d0e0">
+        <li>Download <code>pinkboba.exe</code> from the button above</li>
+        <li>Place it in a folder, e.g. <code>C:\tools\</code></li>
+        <li>Add that folder to your <code>PATH</code> environment variable</li>
+        <li>Open a new terminal and run <code>pinkboba --help</code></li>
+      </ol>
+
+      <h3>Option 3: Build from source</h3>
+      <div class="code-header"><span>Terminal</span></div>
+      <pre><code>git clone https://github.com/zulsyam23-dot/pinkboba.git
+cd pinkboba
+cargo install --path .</code></pre>
+
+      <div class="note">
+        <strong>Note:</strong> Pinkboba downloads components from GitHub at runtime.
+        An internet connection is required for <code>pinkboba add glass</code> and <code>pinkboba new --template glass</code>.
+        Set the <code>PINKBOBA_PACKAGES_PATH</code> environment variable for offline development.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><a href="https://github.com/zulsyam23-dot/pinkboba">GitHub</a> &middot; <a href="../docs/cli.html">CLI Reference</a> &middot; <a href="../download/">Download</a></p>
+      <p style="margin-top:8px">Built with Pinkboba &middot; &copy; 2026</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

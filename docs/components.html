@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components — Pinkboba Docs</title>
+  <meta name="description" content="Complete reference for all Pinkboba built-in UI components.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="../" class="logo"><span>pinkboba</span><small>v0.1</small></a>
+      <div class="nav-links">
+        <a href="../docs/getting-started.html">Docs</a>
+        <a href="../docs/cli.html">CLI</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../download/" class="btn-nav">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Components</h1>
+      <p>Pinkboba ships with 27 built-in components (prefix <code>pb-</code>) and 27 external glass components (prefix <code>pg-</code>).</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="docs-nav">
+        <a href="../docs/getting-started.html">Getting Started</a>
+        <a href="../docs/cli.html">CLI Reference</a>
+        <a href="../docs/templates.html">Templates</a>
+        <a href="../docs/components.html" class="active">Components</a>
+        <a href="../docs/glass.html">Glass Package</a>
+      </div>
+
+      <div class="content">
+        <h2>Built-in Components (pb-*)</h2>
+        <p>These components are compiled into the Pinkboba binary and available immediately — no download required. Use them with <code>pinkboba add &lt;name&gt;</code>.</p>
+
+        <div class="comp-grid" style="margin:24px 0">
+          <div class="glass comp-item">
+            <strong>accordion</strong>
+            <span class="tag">pb-accordion</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>alert</strong>
+            <span class="tag">pb-alert</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>avatar</strong>
+            <span class="tag">pb-avatar</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>badge</strong>
+            <span class="tag">pb-badge</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>breadcrumb</strong>
+            <span class="tag">pb-breadcrumb</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>button</strong>
+            <span class="tag">pb-button</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>card</strong>
+            <span class="tag">pb-card</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>dropdown</strong>
+            <span class="tag">pb-dropdown</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>file-upload</strong>
+            <span class="tag">pb-file-upload</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>footer</strong>
+            <span class="tag">pb-footer</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>form-login</strong>
+            <span class="tag">pb-form-login</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>form-signup</strong>
+            <span class="tag">pb-form-signup</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>hero</strong>
+            <span class="tag">pb-hero</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>input</strong>
+            <span class="tag">pb-input</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>loading</strong>
+            <span class="tag">pb-loading</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>modal</strong>
+            <span class="tag">pb-modal</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>navbar</strong>
+            <span class="tag">pb-navbar</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>oauth</strong>
+            <span class="tag">pb-oauth</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>otp</strong>
+            <span class="tag">pb-otp</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>pagination</strong>
+            <span class="tag">pb-pagination</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>progress-bar</strong>
+            <span class="tag">pb-progress-bar</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>table</strong>
+            <span class="tag">pb-table</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>tabs</strong>
+            <span class="tag">pb-tabs</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>theme</strong>
+            <span class="tag">pb-theme</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>toast</strong>
+            <span class="tag">pb-toast</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>toggle</strong>
+            <span class="tag">pb-toggle</span>
+          </div>
+          <div class="glass comp-item">
+            <strong>tooltip</strong>
+            <span class="tag">pb-tooltip</span>
+          </div>
+        </div>
+
+        <h2>How Components Work</h2>
+        <p>Each component is a <code>.pinkboba</code> file containing three sections separated by markers:</p>
+        <pre><code>---STYLE---
+/* CSS for this component */
+.pb-button { ... }
+
+---SCRIPT---
+// JavaScript for this component
+document.querySelectorAll('.pb-button')...
+
+---TEMPLATE---
+&lt;!-- HTML template for this component --&gt;
+&lt;button class="pb-button"&gt;...&lt;/button&gt;</code></pre>
+        <p>When you run <code>pinkboba add &lt;component&gt;</code>, the tool:</p>
+        <ol>
+          <li>Reads the <code>.pinkboba</code> file</li>
+          <li>Extracts the CSS and appends it to <code>src/style.css</code></li>
+          <li>Extracts the JS and appends it to <code>src/script.js</code></li>
+          <li>Inserts the HTML into <code>index.html</code> at the <code>&lt;!--INJECT_HTML--&gt;</code> marker</li>
+        </ol>
+
+        <h2>Using Components</h2>
+        <pre><code># Add individual components
+pinkboba add navbar
+pinkboba add hero
+pinkboba add card
+pinkboba add button
+pinkboba add theme  # adds dark/light theme toggle
+
+# Add the full glass package (27 components)
+pinkboba add glass</code></pre>
+
+        <h2>Removing Components</h2>
+        <pre><code>pinkboba remove component navbar</code></pre>
+        <p>This removes the component's CSS, JS, and HTML from your project files.</p>
+
+        <h2>Previewing Components</h2>
+        <p>Generate a component's output without adding it to the project:</p>
+        <pre><code>pinkboba component button</code></pre>
+
+        <h2>External Components (pg-*)</h2>
+        <p>The <a href="../docs/glass.html">glass package</a> provides 27 additional components with the <code>pg-</code> prefix, featuring glassmorphism styling. These are downloaded from GitHub at runtime.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><a href="https://github.com/zulsyam23-dot/pinkboba">GitHub</a> &middot; <a href="../docs/cli.html">CLI Reference</a> &middot; <a href="../download/">Download</a></p>
+      <p style="margin-top:8px">Built with Pinkboba &middot; &copy; 2026</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+
