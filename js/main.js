@@ -29,30 +29,4 @@ document.addEventListener('DOMContentLoaded', () => {
       a.classList.add('active');
     }
   });
-
-  // Scroll progress bar
-  const bar = document.createElement('div');
-  bar.className = 'scroll-progress';
-  document.body.appendChild(bar);
-
-  window.addEventListener('scroll', () => {
-    const h = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = `${h > 0 ? (window.scrollY / h) * 100 : 0}%`;
-  });
-
-  // IntersectionObserver for fade-in animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in, .glass, .step, .feature-card, .comp-item').forEach(el => {
-    if (!el.classList.contains('fade-in')) {
-      el.classList.add('fade-in');
-    }
-    observer.observe(el);
-  });
 });
