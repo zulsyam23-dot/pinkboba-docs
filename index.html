@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pinkboba — Build beautiful web projects instantly</title>
-  <meta name="description" content="Pinkboba is a CLI package manager for professional web projects. Generate components, templates, and glassmorphism UI in seconds.">
+  <meta name="description" content="Pinkboba is a CLI tool for full-stack web projects. Frontend components + Rust Axum backend generator.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -19,6 +19,7 @@
         <a href="docs/getting-started.html">Docs</a>
         <a href="docs/cli.html">CLI</a>
         <a href="docs/components.html">Components</a>
+        <a href="docs/backend.html">Backend</a>
         <a href="download/" class="btn-nav">Download</a>
       </div>
     </div>
@@ -27,7 +28,7 @@
   <section class="hero">
     <div class="container">
       <h1>Build beautiful web projects<br>with <span class="highlight">one command</span></h1>
-      <p>Pinkboba is a CLI tool that scaffolds professional web projects, generates glassmorphism UI components, and manages your frontend assets — all from the terminal.</p>
+      <p>Pinkboba is a CLI tool that scaffolds frontend UIs <strong>and</strong> Rust (Axum) backends. Generate 25 UI components, full CRUD APIs with JWT auth, SQLite, and more — all from the terminal.</p>
       <div class="buttons">
         <a href="download/" class="btn btn-primary">Download for Windows</a>
         <a href="docs/getting-started.html" class="btn btn-ghost">Get Started →</a>
@@ -41,22 +42,22 @@
         <div class="glass feature-card">
           <div class="icon">⚡</div>
           <h3>Instant Scaffolding</h3>
-          <p>Create a new project with a single command. Choose from multiple templates: default, minimal, professional, showcase, or glass.</p>
+          <p>Create a new project with a single command. Choose from 5 templates or generate a Rust backend with SQLite and JWT auth.</p>
         </div>
         <div class="glass feature-card">
           <div class="icon">🧩</div>
-          <h3>27+ UI Components</h3>
-          <p>Built-in components with <code>pb-</code> prefix and external glassmorphism components with <code>pg-</code> prefix. Add them individually or as a package.</p>
+          <h3>25 UI Components</h3>
+          <p>Built-in components with <code>pb-</code> prefix. Add them individually via <code>fb-component</code> or install the glass package for 27 more.</p>
         </div>
         <div class="glass feature-card">
-          <div class="icon">🪟</div>
-          <h3>Glassmorphism Ready</h3>
-          <p>Frosted glass surfaces with <code>backdrop-filter: blur()</code>, semi-transparent backgrounds, and gradient accents — no CSS expertise needed.</p>
+          <div class="icon">🦀</div>
+          <h3>Rust Backend (Axum)</h3>
+          <p>Generate a complete Rust API with 11 <code>bd-component</code> commands: scaffold, model, controller, auth (bcrypt+JWT), middleware, response wrapper, pagination, and more.</p>
         </div>
         <div class="glass feature-card">
           <div class="icon">📦</div>
-          <h3>No Build Step</h3>
-          <p>Pinkboba generates plain HTML, CSS, and JS. No bundlers, no frameworks, no configuration. Just open <code>index.html</code> and go.</p>
+          <h3>No Build Step Required</h3>
+          <p>Frontend outputs plain HTML, CSS, and JS. No bundlers, no frameworks, no config. Just open <code>index.html</code> or deploy the Rust binary.</p>
         </div>
         <div class="glass feature-card">
           <div class="icon">🎨</div>
@@ -74,30 +75,20 @@
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title">Quick Start</h2>
+      <h2 class="section-title">Quick Start — Frontend</h2>
       <p class="section-sub">Get a project running in under 30 seconds.</p>
       <div class="steps">
         <div class="glass step">
-          <h3>Install Pinkboba</h3>
-          <p>Download the latest <code>pinkboba.exe</code> and add it to your <code>PATH</code>, or use <code>cargo install pinkboba</code> if you have Rust installed.</p>
-        </div>
-        <div class="glass step">
           <h3>Create a project</h3>
-          <pre><code>pinkboba new my-app --template glass</code></pre>
-          <p>This downloads the glass template and 27 glassmorphism components.</p>
+          <p><code>pinkboba new my-app</code></p>
         </div>
         <div class="glass step">
           <h3>Add components</h3>
-          <pre><code>cd my-app
-pinkboba add navbar
-pinkboba add card
-pinkboba add theme</code></pre>
-          <p>Each component injects CSS, JS, and HTML into your project.</p>
+          <p><code>pinkboba fb-component navbar &amp;&amp; pinkboba fb-component hero</code></p>
         </div>
         <div class="glass step">
           <h3>Preview</h3>
-          <pre><code>pinkboba serve</code></pre>
-          <p>Open your browser and see your project live.</p>
+          <p><code>pinkboba serve</code> → open <code>http://localhost:8080</code></p>
         </div>
       </div>
     </div>
@@ -105,19 +96,24 @@ pinkboba add theme</code></pre>
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title">What You Get</h2>
-      <p class="section-sub">Every project comes with a clean, organized structure.</p>
-      <pre><code>my-app/
-├── index.html          # Main HTML with injection markers
-├── src/
-│   ├── style.css       # Global styles
-│   ├── script.js       # Global JavaScript
-│   └── components/     # Installed .pinkboba files
-│       ├── pb-navbar.pinkboba
-│       ├── pb-card.pinkboba
-│       ├── pg-button.pinkboba
-│       └── ...
-└── pinkboba.json       # Project configuration</code></pre>
+      <h2 class="section-title">Quick Start — Full Stack</h2>
+      <p class="section-sub">Add a Rust backend with SQLite, auth, and API routes.</p>
+      <div class="steps">
+        <div class="glass step">
+          <h3>Scaffold backend</h3>
+          <p><code>pinkboba bd-component scaffold --with-db --with-env</code></p>
+        </div>
+        <div class="glass step">
+          <h3>Generate model + controller</h3>
+          <p><code>pinkboba bd-component model User --fields name:String,email:String</code></p>
+          <p><code>pinkboba bd-component controller User --fields name:String,email:String</code></p>
+        </div>
+        <div class="glass step">
+          <h3>Add auth + serve</h3>
+          <p><code>pinkboba bd-component auth &amp;&amp; pinkboba serve</code></p>
+          <p>→ <code>http://localhost:3000/api</code></p>
+        </div>
+      </div>
     </div>
   </section>
 

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backend (bd-component) — Pinkboba Docs</title>
+  <meta name="description" content="Complete reference for Pinkboba's Rust backend generator — 11 bd-component commands.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="../" class="logo"><span>pinkboba</span><small>v0.1</small></a>
+      <div class="nav-links">
+        <a href="../docs/getting-started.html">Docs</a>
+        <a href="../docs/cli.html">CLI</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../docs/backend.html" class="active">Backend</a>
+        <a href="../download/" class="btn-nav">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Backend Generator</h1>
+      <p>Generate a complete Rust (Axum) backend API with 11 <code>bd-component</code> commands — no manual setup.</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="docs-nav">
+        <a href="../docs/getting-started.html">Getting Started</a>
+        <a href="../docs/cli.html">CLI Reference</a>
+        <a href="../docs/components.html">Frontend</a>
+        <a href="../docs/backend.html" class="active">Backend</a>
+        <a href="../docs/templates.html">Templates</a>
+        <a href="../docs/glass.html">Glass</a>
+      </div>
+
+      <div class="content">
+        <p class="note" style="margin-top:0">
+          <strong>Prerequisites:</strong> Run <code>pinkboba bd-component scaffold</code> first in an existing project.
+          All commands must be run from the project root (where <code>Pinkboba.toml</code> exists).
+        </p>
+
+        <h2>Quick Start — Full Stack</h2>
+        <pre><code>cd my-project
+pinkboba bd-component scaffold --with-db --with-env
+pinkboba bd-component model User --fields name:String,email:String,age:i32
+pinkboba bd-component controller User --fields name:String,email:String,age:i32
+pinkboba bd-component auth
+pinkboba bd-component middleware
+pinkboba bd-component response
+pinkboba bd-component migration create create_users_table
+pinkboba bd-component migration run
+pinkboba serve</code></pre>
+
+        <h2>Command Overview</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Command</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>scaffold</code></td><td>Generate base Rust Axum crate with optional SQLite + env</td></tr>
+              <tr><td><code>model</code></td><td>Generate serde struct, auto-wire to models/mod.rs</td></tr>
+              <tr><td><code>controller</code></td><td>Generate Axum CRUD handler with routes, auto-wire</td></tr>
+              <tr><td><code>migration</code></td><td>Create, run, or list SQL migrations</td></tr>
+              <tr><td><code>auth</code></td><td>Generate JWT auth system (bcrypt login/register/me)</td></tr>
+              <tr><td><code>middleware</code></td><td>Generate CORS + request logger</td></tr>
+              <tr><td><code>response</code></td><td>Generate ApiResponse&lt;T&gt; success/error wrapper</td></tr>
+              <tr><td><code>validator</code></td><td>Generate validation helpers</td></tr>
+              <tr><td><code>seeder</code></td><td>Generate seed data runner</td></tr>
+              <tr><td><code>pagination</code></td><td>Generate pagination params + response</td></tr>
+              <tr><td><code>error</code></td><td>Generate unified AppError enum (auto-generated in scaffold)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>scaffold</h2>
+        <p>Generates a complete Rust crate at <code>src/backhed/</code> with Axum 0.8, Tokio, serde, tower-http, and more.</p>
+        <pre><code>pinkboba bd-component scaffold [--with-db] [--with-env]</code></pre>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Flag</th><th>Effect</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--with-db</code></td><td>Adds SQLite (rusqlite bundled), <code>database.rs</code>, <code>migrations/</code> directory, <code>DbPool</code> type</td></tr>
+              <tr><td><code>--with-env</code></td><td>Adds dotenvy, <code>config.rs</code>, <code>.env</code>, <code>.env.example</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Auto-generated:</strong> <code>error.rs</code> (AppError), <code>lib.rs</code> with <code>AppState</code>, <code>main.rs</code> with Axum server, <code>models/mod.rs</code>, <code>controllers/mod.rs</code>. Dependency <code>serde_json = "1"</code> always included.</p>
+        <p>The generated <code>error.rs</code> conditionally includes a <code>Database(rusqlite::Error)</code> variant — only when <code>--with-db</code> is used or <code>rusqlite</code> is in your <code>Cargo.toml</code>.</p>
+
+        <h2>model</h2>
+        <p>Generates a Rust struct with serde <code>Serialize</code>/<code>Deserialize</code> and auto-wires it into <code>models/mod.rs</code>.</p>
+        <pre><code>pinkboba bd-component model &lt;name&gt; --fields name:type,...</code></pre>
+        <pre><code>pinkboba bd-component model User --fields name:String,email:String,age:i32
+# → src/backhed/src/models/user.rs
+# → Auto: pub mod user; in models/mod.rs</code></pre>
+        <p><strong>Supported types:</strong> <code>String</code>, <code>i32</code>, <code>i64</code>, <code>f32</code>, <code>f64</code>, <code>bool</code>. Unknown types default to <code>String</code>.</p>
+
+        <h2>controller</h2>
+        <p>Generates an Axum CRUD controller with 5 handlers (list, get_by_id, create, update, delete) and auto-wires routes.</p>
+        <pre><code>pinkboba bd-component controller &lt;name&gt; --fields name:type,...</code></pre>
+        <pre><code>pinkboba bd-component controller User --fields name:String,email:String
+# → src/backhed/src/controllers/user_controller.rs
+# → Auto: pub mod user_controller; + .nest("/users", user_controller::router())
+# in controllers/mod.rs</code></pre>
+        <p><strong>Smart auto-gen:</strong> If the model file doesn't exist yet, the controller command automatically creates a model stub and wires it. No pre-requisite ordering needed.</p>
+        <p>Each handler receives <code>State&lt;Arc&lt;AppState&gt;&gt;</code> and returns <code>Result&lt;..., AppError&gt;</code>. Unused parameters are automatically prefixed with <code>_</code> to eliminate compiler warnings.</p>
+
+        <h2>migration</h2>
+        <p>SQL migration management — create timestamped <code>.sql</code> files, run pending migrations, or list existing ones.</p>
+        <pre><code>pinkboba bd-component migration create &lt;name&gt;
+pinkboba bd-component migration run
+pinkboba bd-component migration list</code></pre>
+        <pre><code># Create a migration
+pinkboba bd-component migration create add_email_to_users
+# → src/backhed/migrations/20250101000000_add_email_to_users.sql
+
+# Edit the file, then run:
+pinkboba bd-component migration run</code></pre>
+        <p>Migration files are parsed for <code>-- UP</code> and <code>-- DOWN</code> sections. Only the <code>-- UP</code> section is executed. Already-applied migrations are tracked via a <code>_migrations</code> table and skipped on subsequent runs.</p>
+
+        <h2>auth</h2>
+        <p>Generates a complete JWT authentication system with real bcrypt password hashing and database queries.</p>
+        <pre><code>pinkboba bd-component auth</code></pre>
+        <p><strong>Generated files:</strong></p>
+        <ul>
+          <li><code>src/backhed/src/auth/jwt.rs</code> — <code>create_token()</code>, <code>validate_token()</code>, <code>Claims</code> struct with <code>FromRequestParts</code> extractor</li>
+          <li><code>src/backhed/src/auth/mod.rs</code> — 3 routes: <code>POST /auth/login</code>, <code>POST /auth/register</code>, <code>POST /auth/me</code></li>
+        </ul>
+        <p><strong>Features:</strong></p>
+        <ul>
+          <li>Login verifies bcrypt hash against <code>users</code> table</li>
+          <li>Register hashes password with bcrypt, inserts user</li>
+          <li>Me queries user by ID from JWT claims</li>
+          <li>Auto-creates <code>users</code> table if not exists</li>
+          <li>Auto-wires routes into <code>controllers/mod.rs</code></li>
+          <li>Auto-generates <code>error.rs</code> if missing</li>
+          <li>Adds <code>JWT_SECRET</code> to <code>src/backhed/.env</code></li>
+        </ul>
+        <p><strong>Dependencies added:</strong> <code>jsonwebtoken</code>, <code>bcrypt</code>, <code>chrono</code>, <code>serde_json</code></p>
+        <p>Use the <code>Claims</code> extractor in any handler:</p>
+        <pre><code>use crate::auth::jwt::Claims;
+
+async fn me(claims: Claims) -> Result&lt;Json&lt;Value&gt;, AppError&gt; {
+    // claims.sub = user_id, claims.email = email
+}</code></pre>
+        <div class="note">
+          <strong>Security:</strong> JWT expires after 24 hours. The secret key defaults to <code>"change-me"</code> when <code>JWT_SECRET</code> is not set. <strong>Always set a strong secret via <code>pinkboba env set JWT_SECRET &lt;your-secret&gt;</code> before production.</strong>
+        </div>
+
+        <h2>middleware</h2>
+        <p>Generates CORS (permissive) and a request logger middleware, wired into the main router.</p>
+        <pre><code>pinkboba bd-component middleware</code></pre>
+        <p>Logs all requests: <code>→ GET /api/users</code> on entry, <code>← 200 /api/users</code> on response. Uses <code>CorsLayer::permissive()</code> from <code>tower-http</code>.</p>
+
+        <h2>response</h2>
+        <p>Generates <code>ApiResponse&lt;T&gt;</code> — a unified JSON response wrapper.</p>
+        <pre><code>pinkboba bd-component response</code></pre>
+        <pre><code>// Success with data
+ApiResponse::success(data)        // → { "success": true, "data": ... }
+
+// Success with message
+ApiResponse::success_msg("done")  // → { "success": true, "message": "done" }
+
+// Error response (returns StatusCode + Json)
+ApiResponse::error("not found")   // → (StatusCode, Json<{ "success": false, "message": "not found" }>)</code></pre>
+        <p>The <code>data</code> field is automatically omitted when <code>None</code>.</p>
+
+        <h2>validator</h2>
+        <p>Generates validation helpers — simple functions that return <code>Result&lt;(), String&gt;</code>.</p>
+        <pre><code>pinkboba bd-component validator</code></pre>
+        <pre><code>validator::required("")?;             // Err("Value is required")
+validator::email("bad")?;             // Err("Invalid email format")
+validator::min_length("ab", 3)?;      // Err("Must be at least 3 characters")
+validator::max_length("abc", 2)?;     // Err("Must be at most 2 characters")</code></pre>
+
+        <h2>seeder</h2>
+        <p>Generates a <code>seeder::run()</code> function for inserting sample data into the database.</p>
+        <pre><code>pinkboba bd-component seeder</code></pre>
+        <pre><code>// Call in main.rs after database init:
+seeder::run(&amp;pool);</code></pre>
+        <p>Inserts a sample user row by default — edit the generated file to add your own seed data.</p>
+
+        <h2>pagination</h2>
+        <p>Generates <code>PaginationParams</code> (query params extractor) and <code>PaginatedResponse&lt;T&gt;</code>.</p>
+        <pre><code>pinkboba bd-component pagination</code></pre>
+        <pre><code>use crate::pagination::{PaginationParams, PaginatedResponse};
+
+async fn list_users(pagination: PaginationParams) -> Json&lt;PaginatedResponse&lt;User&gt;&gt; {
+    let page = pagination.page();              // default: 1
+    let per_page = pagination.per_page();       // default: 10 (clamped 1-100)
+    let offset = pagination.offset();           // (page - 1) * per_page
+    let search = pagination.search_like();      // "%search_term%"
+
+    PaginatedResponse::new(data, total, page, per_page)
+    // → { "data": [...], "page": 1, "per_page": 10, "total": 42, "total_pages": 5 }
+}</code></pre>
+
+        <h2>error</h2>
+        <p>Generates <code>AppError</code> — the unified error type used by all controllers and auth handlers.</p>
+        <pre><code>pinkboba bd-component error</code></pre>
+        <p>This command is usually not needed — <code>error.rs</code> is auto-generated during <code>scaffold</code> and <code>auth</code>. Use this only if you need to regenerate it.</p>
+        <pre><code>pub enum AppError {
+    NotFound(String),
+    Unauthorized(String),
+    BadRequest(String),
+    Internal(String),
+    Database(rusqlite::Error),  // only if rusqlite is a dependency
+}
+
+// impl IntoResponse → returns JSON { success: false, message: "..." }
+// impl From<rusqlite::Error>   → ? operator works with DB errors
+// impl From<StatusCode>        → ? operator works with status codes</code></pre>
+
+        <h2>Project Structure</h2>
+        <p>After running the full setup, your backend looks like this:</p>
+        <pre><code>src/backhed/
+├── Cargo.toml
+├── .env / .env.example
+├── migrations/                  # .sql migration files
+├── static/                      # Frontend assets (auto-copied)
+└── src/
+    ├── main.rs                  # Axum server entry point
+    ├── lib.rs                   # AppState + module declarations
+    ├── error.rs                 # AppError enum
+    ├── config.rs                # Environment config parser
+    ├── database.rs              # SQLite connection + migration runner
+    ├── middleware.rs             # CORS + request logger
+    ├── response.rs              # ApiResponse&lt;T&gt; wrapper
+    ├── validator.rs             # Validation helpers
+    ├── seeder.rs                # Seed data runner
+    ├── pagination.rs            # PaginationParams + PaginatedResponse
+    ├── auth/
+    │   ├── mod.rs               # Auth routes (login/register/me)
+    │   └── jwt.rs               # JWT create/validate + Claims extractor
+    ├── models/
+    │   ├── mod.rs               # Auto-wired model registry
+    │   └── user.rs              # Model struct
+    └── controllers/
+        ├── mod.rs               # Auto-wired route registry
+        └── user_controller.rs   # CRUD handlers</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><a href="https://github.com/zulsyam23-dot/pinkboba">GitHub</a> &middot; <a href="../docs/cli.html">CLI Reference</a> &middot; <a href="../download/">Download</a></p>
+      <p style="margin-top:8px">Built with Pinkboba &middot; &copy; 2026</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

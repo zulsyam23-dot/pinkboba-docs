@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CLI Reference — Pinkboba Docs</title>
-  <meta name="description" content="Complete Pinkboba CLI command reference.">
+  <meta name="description" content="Complete Pinkboba CLI command reference — all commands, options, and examples.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -17,8 +17,9 @@
       <a href="../" class="logo"><span>pinkboba</span><small>v0.1</small></a>
       <div class="nav-links">
         <a href="../docs/getting-started.html">Docs</a>
-        <a href="../docs/cli.html">CLI</a>
+        <a href="../docs/cli.html" class="active">CLI</a>
         <a href="../docs/components.html">Components</a>
+        <a href="../docs/backend.html">Backend</a>
         <a href="../download/" class="btn-nav">Download</a>
       </div>
     </div>
@@ -27,7 +28,7 @@
   <div class="page-header">
     <div class="container">
       <h1>CLI Reference</h1>
-      <p>Complete documentation for the <code>pinkboba</code> command-line interface.</p>
+      <p>Complete documentation for all <code>pinkboba</code> commands, subcommands, and options.</p>
     </div>
   </div>
 
@@ -36,9 +37,10 @@
       <div class="docs-nav">
         <a href="../docs/getting-started.html">Getting Started</a>
         <a href="../docs/cli.html" class="active">CLI Reference</a>
+        <a href="../docs/components.html">Frontend</a>
+        <a href="../docs/backend.html">Backend</a>
         <a href="../docs/templates.html">Templates</a>
-        <a href="../docs/components.html">Components</a>
-        <a href="../docs/glass.html">Glass Package</a>
+        <a href="../docs/glass.html">Glass</a>
       </div>
 
       <div class="content">
@@ -52,11 +54,13 @@
             </thead>
             <tbody>
               <tr><td><code>new</code></td><td>Create a new project from a template</td></tr>
-              <tr><td><code>add</code></td><td>Add a component or package to the current project</td></tr>
+              <tr><td><code>add</code></td><td>Add a package from the registry</td></tr>
               <tr><td><code>remove</code></td><td>Remove a component or dependency</td></tr>
-              <tr><td><code>component</code></td><td>Generate a single component's output</td></tr>
-              <tr><td><code>build</code></td><td>Build the project for production</td></tr>
-              <tr><td><code>serve</code></td><td>Start a development server with live reload</td></tr>
+              <tr><td><code>fb-component</code></td><td>Generate a frontend UI component (25 types)</td></tr>
+              <tr><td><code>bd-component</code></td><td>Generate a backend Rust component (11 types)</td></tr>
+              <tr><td><code>env</code></td><td>Manage environment variables (.env)</td></tr>
+              <tr><td><code>build</code></td><td>Build frontend + backend for production</td></tr>
+              <tr><td><code>serve</code></td><td>Start development server</td></tr>
               <tr><td><code>help</code></td><td>Print help information</td></tr>
             </tbody>
           </table>
@@ -67,10 +71,10 @@
         <pre><code>pinkboba new [OPTIONS] &lt;NAME&gt;
 
 Arguments:
-  &lt;NAME&gt;  Project name (creates a directory with this name)
+  &lt;NAME&gt;  Project name
 
 Options:
-  -t, --template &lt;TEMPLATE&gt;  Template to use [default: default]
+  -t, --template &lt;TEMPLATE&gt;  Template [default: default]
   -h, --help                 Print help</code></pre>
 
         <h3>Available Templates</h3>
@@ -80,128 +84,126 @@ Options:
               <tr><th>Template</th><th>Description</th></tr>
             </thead>
             <tbody>
-              <tr><td><code>default</code></td><td>Standard starter template with basic structure</td></tr>
-              <tr><td><code>minimal</code></td><td>Minimal template with only essential files</td></tr>
-              <tr><td><code>professional</code></td><td>Professional layout with hero, features, and gradient styling</td></tr>
-              <tr><td><code>showcase</code></td><td>Multi-page showcase with routing, counters, and 25+ pre-built components</td></tr>
-              <tr><td><code>glass</code></td><td>Glassmorphism template with 27 glass components (downloaded from GitHub)</td></tr>
+              <tr><td><code>default</code></td><td>Clean starter with injection markers</td></tr>
+              <tr><td><code>minimal</code></td><td>Minimal boilerplate</td></tr>
+              <tr><td><code>professional</code></td><td>Landing page with hero, gradient styling</td></tr>
+              <tr><td><code>showcase</code></td><td>Demo with 25+ pre-built components, routing, theme toggle</td></tr>
+              <tr><td><code>glass</code></td><td>Glassmorphism UI (downloaded from GitHub)</td></tr>
             </tbody>
           </table>
         </div>
 
-        <h3>Examples</h3>
-        <pre><code># Create with default template
-pinkboba new my-app
-
-# Create with professional template
-pinkboba new my-app --template professional
-
-# Create with glass template (downloads from GitHub)
+        <pre><code>pinkboba new my-app
+pinkboba new my-app --template showcase
 pinkboba new my-app --template glass</code></pre>
 
-        <h2>pinkboba add</h2>
-        <p>Adds a component or external package to the current project. Components are downloaded and injected into your project files.</p>
-        <pre><code>pinkboba add &lt;PACKAGE&gt;
+        <h2>pinkboda add</h2>
+        <p>Adds a package from the registry to the current project.</p>
+        <pre><code>pinkboba add &lt;PACKAGE&gt; [--version &lt;VERSION&gt;]
 
 Arguments:
-  &lt;PACKAGE&gt;  Component name (e.g. navbar) or package name (e.g. glass)
+  &lt;PACKAGE&gt;  Package name (e.g. glass)
 
 Options:
-  -v, --version &lt;VERSION&gt;  Package version (for external packages)
+  -v, --version &lt;VERSION&gt;  Package version
   -h, --help               Print help</code></pre>
-
-        <h3>Built-in Components</h3>
-        <p>These are available directly — no download needed:</p>
-        <div class="comp-grid" style="margin-bottom:20px">
-          <div class="glass comp-item">accordion</div>
-          <div class="glass comp-item">alert</div>
-          <div class="glass comp-item">avatar</div>
-          <div class="glass comp-item">badge</div>
-          <div class="glass comp-item">breadcrumb</div>
-          <div class="glass comp-item">button</div>
-          <div class="glass comp-item">card</div>
-          <div class="glass comp-item">dropdown</div>
-          <div class="glass comp-item">file-upload</div>
-          <div class="glass comp-item">footer</div>
-          <div class="glass comp-item">form-login</div>
-          <div class="glass comp-item">form-signup</div>
-          <div class="glass comp-item">hero</div>
-          <div class="glass comp-item">input</div>
-          <div class="glass comp-item">loading</div>
-          <div class="glass comp-item">modal</div>
-          <div class="glass comp-item">navbar</div>
-          <div class="glass comp-item">oauth</div>
-          <div class="glass comp-item">otp</div>
-          <div class="glass comp-item">pagination</div>
-          <div class="glass comp-item">progress-bar</div>
-          <div class="glass comp-item">table</div>
-          <div class="glass comp-item">tabs</div>
-          <div class="glass comp-item">theme</div>
-          <div class="glass comp-item">toast</div>
-          <div class="glass comp-item">toggle</div>
-          <div class="glass comp-item">tooltip</div>
-        </div>
-
-        <h3>External Packages</h3>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Package</th><th>Description</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>glass</code></td><td>27 glassmorphism components with <code>pg-</code> prefix. Download from GitHub at runtime.</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Examples</h3>
-        <pre><code># Add a built-in component
-pinkboba add navbar
-pinkboba add card
-pinkboba add theme
-
-# Add an external package
-pinkboba add glass</code></pre>
+        <p>Currently available packages: <code>glass</code> (27 glassmorphism components with <code>pg-</code> prefix, downloaded from GitHub at runtime).</p>
+        <pre><code>pinkboba add glass</code></pre>
+        <p>To use packages offline, clone <a href="https://github.com/zulsyam23-dot/pinkboba-components">pinkboba-components</a> and set the <code>PINKBOBA_PACKAGES_PATH</code> environment variable to the local path.</p>
 
         <h2>pinkboba remove</h2>
         <p>Removes a component or dependency from the current project.</p>
         <pre><code>pinkboba remove &lt;SUBCOMMAND&gt;
 
 Subcommands:
-  component     Remove a component from the project
-  dependency    Remove a project dependency
-  help          Print help</code></pre>
-
-        <h3>Examples</h3>
-        <pre><code># Remove a component
-pinkboba remove component navbar
-
-# Remove a dependency
+  component     Remove a frontend component from index.html
+  dependency    Remove a dependency from Pinkboba.toml</code></pre>
+        <pre><code>pinkboba remove component navbar
 pinkboba remove dependency glass</code></pre>
 
-        <h2>pinkboba component</h2>
-        <p>Generates a single component's CSS, JS, and HTML output without adding it to a project. Useful for previewing or extracting component code.</p>
-        <pre><code>pinkboba component &lt;COMPONENT&gt;
+        <h2>pinkboba fb-component</h2>
+        <p>Generates a frontend UI component into <code>src/components/</code> and auto-injects it into <code>index.html</code>.</p>
+        <pre><code>pinkboba fb-component &lt;SUBCOMMAND&gt; [OPTIONS]</code></pre>
 
-Available Components:
-  accordion    alert       avatar     badge      breadcrumb
-  button       card        dropdown   file-upload footer
-  form-login   form-signup hero       input      loading
-  modal        navbar      oauth      otp        pagination
-  progress-bar table       tabs       theme      toast
-  toggle       tooltip</code></pre>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Subcommand</th><th>Options</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>button</code></td><td><code>--variant</code> primary / secondary / outline / danger / ghost</td></tr>
+              <tr><td><code>navbar</code></td><td><code>--style</code> horizontal / hamburger</td></tr>
+              <tr><td><code>theme</code></td><td><code>--mode</code> light / dark</td></tr>
+              <tr><td><code>form-login</code>, <code>form-signup</code>, <code>card</code>, <code>modal</code>, <code>alert</code>, <code>tabs</code>, <code>accordion</code>, <code>breadcrumb</code>, <code>dropdown</code>, <code>pagination</code>, <code>toggle</code>, <code>progress-bar</code>, <code>footer</code>, <code>loading</code>, <code>tooltip</code>, <code>hero</code>, <code>otp</code>, <code>oauth</code>, <code>table</code>, <code>toast</code>, <code>badge</code>, <code>avatar</code>, <code>file-upload</code></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <h3>Examples</h3>
-        <pre><code># Preview a button component
-pinkboba component button</code></pre>
+        <pre><code>pinkboda fb-component button --variant danger
+pinkboba fb-component navbar --style hamburger
+pinkboba fb-component card
+pinkboba fb-component theme --mode dark</code></pre>
+
+        <p>Each component generates a <code>.pinkboba</code> file in <code>src/components/</code> and auto-injects its CSS <code>&lt;link&gt;</code>, JS <code>&lt;script&gt;</code>, and HTML tag at the corresponding injection markers.</p>
+
+        <h2>pinkboba bd-component</h2>
+        <p>Generates backend Rust (Axum) components. See the <a href="backend.html">Backend Generator</a> page for full documentation.</p>
+        <pre><code>pinkboba bd-component &lt;SUBCOMMAND&gt; [OPTIONS]
+
+Subcommands:
+  scaffold    Generate base Rust Axum crate
+  model       Generate serde struct, auto-wire
+  controller  Generate CRUD handler, auto-wire
+  migration   Create / run / list SQL migrations
+  auth        Generate JWT auth (bcrypt login/register/me)
+  middleware  Generate CORS + request logger
+  response    Generate ApiResponse&lt;T&gt; wrapper
+  validator   Generate validation helpers
+  seeder      Generate seed data runner
+  pagination  Generate pagination params + response
+  error       Generate unified AppError enum</code></pre>
+
+        <pre><code>pinkboba bd-component scaffold --with-db --with-env
+pinkboba bd-component model User --fields name:String,email:String
+pinkboba bd-component controller User --fields name:String,email:String
+pinkboba bd-component auth
+pinkboba bd-component middleware</code></pre>
+
+        <h2>pinkboba env</h2>
+        <p>Manage environment variables across root <code>.env</code> and <code>src/backhed/.env</code>.</p>
+        <pre><code>pinkboba env &lt;SUBCOMMAND&gt;
+
+Subcommands:
+  init       Create .env, .env.example, update .gitignore
+  set        Set an env var in all .env files
+  get        Get an env var value
+  list       List all env vars
+  generate   Regenerate config.rs from .env values</code></pre>
+
+        <pre><code>pinkboba env init
+pinkboba env set JWT_SECRET my-secret-key
+pinkboba env get PORT
+pinkboba env list
+pinkboba env generate</code></pre>
+        <p><code>env init</code> also generates <code>config.rs</code> if scaffold exists, automatically adds <code>.env</code> to <code>.gitignore</code>, and creates <code>.env.example</code> files.</p>
 
         <h2>pinkboba build</h2>
-        <p>Builds the project for production. Creates a <code>dist/</code> directory with optimized output.</p>
+        <p>Builds the project for production. Output goes to <code>dist/</code>.</p>
         <pre><code>pinkboba build</code></pre>
+        <ol>
+          <li>Parse all <code>.pinkboba</code> files in <code>src/</code>, split into HTML/CSS/JS</li>
+          <li>Copy non-<code>.pinkboba</code> files to <code>dist/</code> (excluding <code>backhed/</code>)</li>
+          <li>Compile Rust backend with <code>cargo build --release</code></li>
+          <li>Copy backend binary to <code>dist/backhed(.exe)</code></li>
+          <li>Strip injection markers from HTML</li>
+        </ol>
 
         <h2>pinkboba serve</h2>
-        <p>Starts a local development server on <code>http://localhost:8080</code> with automatic reload on file changes.</p>
+        <p>Starts the development server — builds, spawns backend (if available), and serves frontend.</p>
         <pre><code>pinkboba serve</code></pre>
+        <p><strong>Frontend only:</strong> Serves <code>dist/</code> (or <code>src/</code>) via <code>tiny_http</code> on port 8080.</p>
+        <p><strong>Full stack:</strong> Copies frontend to <code>src/backhed/static/</code>, spawns the backend binary, and serves everything from the Axum server (default port 3000).</p>
+        <p>Press <code>Ctrl+C</code> to stop.</p>
 
         <h2>Environment Variables</h2>
         <div class="table-wrap">
@@ -213,12 +215,33 @@ pinkboba component button</code></pre>
               <tr>
                 <td><code>PINKBOBA_PACKAGES_PATH</code></td>
                 <td>
-                  Local path to external packages directory. When set, Pinkboba loads packages from this path instead of GitHub.
-                  Useful for offline development or testing custom packages.
-                  <br><br>
-                  <strong>Example:</strong>
-                  <pre style="margin:8px 0 0"><code>$env:PINKBOBA_PACKAGES_PATH = "C:\Users\You\pinkboba-components"</code></pre>
+                  Local path to external packages directory. When set, Pinkboba loads packages from this path instead of fetching from GitHub. Useful for offline development or custom packages.
+                  <pre style="margin:8px 0 0"><code>$env:PINKBOBA_PACKAGES_PATH = "C:\path\to\pinkboba-components"</code></pre>
                 </td>
+              </tr>
+              <tr>
+                <td><code>PORT</code></td>
+                <td>Frontend server port (default: 8080)</td>
+              </tr>
+              <tr>
+                <td><code>BACKHED_PORT</code></td>
+                <td>Backend API server port (default: 3000)</td>
+              </tr>
+              <tr>
+                <td><code>JWT_SECRET</code></td>
+                <td>Secret key for JWT token signing (set via <code>pinkboba env set JWT_SECRET ...</code>)</td>
+              </tr>
+              <tr>
+                <td><code>HOST</code></td>
+                <td>Backend bind address (default: 0.0.0.0)</td>
+              </tr>
+              <tr>
+                <td><code>DATABASE_URL</code></td>
+                <td>SQLite database file path (default: backhed.db)</td>
+              </tr>
+              <tr>
+                <td><code>APP_ENV</code></td>
+                <td>Application environment (default: development)</td>
               </tr>
             </tbody>
           </table>
@@ -237,4 +260,3 @@ pinkboba component button</code></pre>
   <script src="../js/main.js"></script>
 </body>
 </html>
-

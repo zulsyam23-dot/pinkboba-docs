@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Getting Started — Pinkboba Docs</title>
-  <meta name="description" content="Learn how to install Pinkboba and create your first project.">
+  <meta name="description" content="Learn how to install Pinkboba and create your first frontend or full-stack project.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -16,9 +16,10 @@
     <div class="container">
       <a href="../" class="logo"><span>pinkboba</span><small>v0.1</small></a>
       <div class="nav-links">
-        <a href="../docs/getting-started.html">Docs</a>
+        <a href="../docs/getting-started.html" class="active">Docs</a>
         <a href="../docs/cli.html">CLI</a>
         <a href="../docs/components.html">Components</a>
+        <a href="../docs/backend.html">Backend</a>
         <a href="../download/" class="btn-nav">Download</a>
       </div>
     </div>
@@ -27,7 +28,7 @@
   <div class="page-header">
     <div class="container">
       <h1>Getting Started</h1>
-      <p>Install Pinkboba and build your first project in minutes.</p>
+      <p>Install Pinkboba and build your first project — frontend-only or full-stack with a Rust API.</p>
     </div>
   </div>
 
@@ -36,54 +37,114 @@
       <div class="docs-nav">
         <a href="../docs/getting-started.html" class="active">Getting Started</a>
         <a href="../docs/cli.html">CLI Reference</a>
+        <a href="../docs/components.html">Frontend</a>
+        <a href="../docs/backend.html">Backend</a>
         <a href="../docs/templates.html">Templates</a>
-        <a href="../docs/components.html">Components</a>
-        <a href="../docs/glass.html">Glass Package</a>
+        <a href="../docs/glass.html">Glass</a>
       </div>
 
       <div class="content">
+
         <h2>1. Install Pinkboba</h2>
-        <p>The easiest way to install Pinkboba is via Cargo (Rust package manager):</p>
-        <div class="code-header"><span>Terminal</span></div>
+        <p>If you have Rust installed, the easiest way is via Cargo:</p>
         <pre><code>cargo install pinkboba</code></pre>
-        <p>If you don't have Rust installed, <a href="../download/">download the binary</a> directly.</p>
+        <p>Otherwise, <a href="../download/">download the binary</a> for your platform from GitHub Releases and add it to your <code>PATH</code>.</p>
+        <p>Verify the installation:</p>
+        <pre><code>pinkboda --version</code></pre>
 
-        <h2>2. Create a project</h2>
-        <p>Use the <code>new</code> command to scaffold a project. Choose a template with the <code>--template</code> flag:</p>
-        <div class="code-header"><span>Terminal</span></div>
-        <pre><code>pinkboba new my-project</code></pre>
-        <p>This creates a new project using the <strong>default</strong> template. To use the glassmorphism template:</p>
-        <pre><code>pinkboba new my-glass-app --template glass</code></pre>
+        <h2>2. Frontend-Only Project</h2>
+        <p>Create a project in seconds — no build tools, no configuration.</p>
 
-        <h2>3. Navigate into the project</h2>
-        <pre><code>cd my-project</code></pre>
+        <div class="glass step">
+          <h3>Create a project</h3>
+          <pre><code>pinkboba new my-app</code></pre>
+          <p>Creates <code>my-app/</code> with <code>index.html</code>, <code>style.css</code>, <code>script.js</code>, and injection markers.</p>
+        </div>
 
-        <h2>4. Add components</h2>
-        <p>Components are the building blocks of your UI. Add them one at a time:</p>
-        <pre><code>pinkboba add navbar
-pinkboba add hero
-pinkboba add button
-pinkboba add card
-pinkboba add theme</code></pre>
-        <p>Each component injects its CSS, JavaScript, and HTML markup into your project files automatically.</p>
+        <div class="glass step">
+          <h3>Add components</h3>
+          <pre><code>cd my-app
+pinkboba fb-component navbar --style horizontal
+pinkboba fb-component hero
+pinkboba fb-component card
+pinkboba fb-component theme --mode dark</code></pre>
+          <p>Each component auto-injects its CSS, JS, and HTML into your project.</p>
+        </div>
 
-        <h2>5. Preview</h2>
-        <p>Start a local development server:</p>
-        <div class="code-header"><span>Terminal</span></div>
-        <pre><code>pinkboba serve</code></pre>
-        <p>Open <code>http://localhost:8080</code> in your browser. The server watches for file changes and refreshes automatically.</p>
+        <div class="glass step">
+          <h3>Preview</h3>
+          <pre><code>pinkboba serve</code></pre>
+          <p>Open <code>http://localhost:8080</code> in your browser.</p>
+        </div>
 
-        <h2>6. Build for production</h2>
-        <p>Generate a production-ready build:</p>
-        <pre><code>pinkboba build</code></pre>
-        <p>This creates a <code>dist/</code> folder with all assets bundled.</p>
+        <div class="glass step">
+          <h3>Build for production</h3>
+          <pre><code>pinkboba build</code></pre>
+          <p>Output goes to <code>dist/</code> — ready to deploy anywhere.</p>
+        </div>
 
-        <h2>What's next?</h2>
+        <h2>3. Full-Stack Project (Rust + Axum)</h2>
+        <p>Add a Rust backend with SQLite, JWT auth, and more — all from the CLI.</p>
+
+        <div class="glass step">
+          <h3>Creat a project (or use existing)</h3>
+          <pre><code>pinkboba new my-api-app
+cd my-api-app</code></pre>
+        </div>
+
+        <div class="glass step">
+          <h3>Scaffold the backend</h3>
+          <pre><code>pinkboba bd-component scaffold --with-db --with-env</code></pre>
+          <p>Generates a complete Rust crate at <code>src/backhed/</code> with Axum 0.8, SQLite, env config, and <code>AppError</code>.</p>
+        </div>
+
+        <div class="glass step">
+          <h3>Initialize environment</h3>
+          <pre><code>pinkboba env init</code></pre>
+          <p>Creates <code>.env</code>, <code>.env.example</code>, and updates <code>.gitignore</code>.</p>
+        </div>
+
+        <div class="glass step">
+          <h3>Generate model + controller</h3>
+          <pre><code>pinkboba bd-component model User --fields name:String,email:String,age:i32
+pinkboba bd-component controller User --fields name:String,email:String</code></pre>
+          <p>Model auto-wires to <code>models/mod.rs</code>. Controller auto-wires to <code>controllers/mod.rs</code> with full CRUD routes. If the model doesn't exist yet, the controller command creates it automatically.</p>
+        </div>
+
+        <div class="glass step">
+          <h3>Add authentication</h3>
+          <pre><code>pinkboba bd-component auth</code></pre>
+          <p>Generates JWT auth with bcrypt password hashing. Auto-adds <code>POST /auth/login</code>, <code>POST /auth/register</code>, <code>POST /auth/me</code> routes and a <code>users</code> table. Sets <code>JWT_SECRET</code> in your <code>.env</code>.</p>
+        </div>
+
+        <div class="glass step">
+          <h3>Add extras (optional)</h3>
+          <pre><code>pinkboba bd-component middleware   # CORS + request logger
+pinkboba bd-component response     # ApiResponse&lt;T&gt; wrapper
+pinkboba bd-component validator    # Validation helpers
+pinkboba bd-component pagination   # Pagination support</code></pre>
+        </div>
+
+        <div class="glass step">
+          <h3>Run migrations</h3>
+          <pre><code>pinkboba bd-component migration create create_users_table
+# Edit migrations/*.sql, then:
+pinkboda bd-component migration run</code></pre>
+        </div>
+
+        <div class="glass step">
+          <h3>Build and serve</h3>
+          <pre><code>pinkboba serve</code></pre>
+          <p>Builds the Rust backend (<code>cargo build --release</code>), copies the frontend to <code>src/backhed/static/</code>, and spawns the server on <code>http://localhost:3000</code>. The API routes are served under <code>/api/...</code>.</p>
+        </div>
+
+        <h2>What's Next?</h2>
         <ul>
-          <li>Browse all <a href="../docs/components.html">available components</a></li>
-          <li>Explore the <a href="../docs/cli.html">full CLI reference</a></li>
-          <li>Learn about the <a href="../docs/glass.html">glass package</a> for glassmorphism UI</li>
-          <li>Check out the <a href="../docs/templates.html">template options</a></li>
+          <li>Explore all <a href="../docs/cli.html">CLI commands</a></li>
+          <li>Browse the <a href="../docs/components.html">25 frontend components</a></li>
+          <li>Learn about all <a href="../docs/backend.html">11 backend generators</a></li>
+          <li>Check out <a href="../docs/templates.html">template options</a></li>
+          <li>Install the <a href="../docs/glass.html">glass package</a> for glassmorphism UI</li>
         </ul>
       </div>
     </div>
@@ -99,4 +160,3 @@ pinkboba add theme</code></pre>
   <script src="../js/main.js"></script>
 </body>
 </html>
-
