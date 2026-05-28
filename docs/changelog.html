@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog — Pinkboba Docs</title>
+  <meta name="description" content="Pinkboba changelog — bug fixes, new features, and updates.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="../" class="logo"><span>pinkboba</span><small>v0.1</small></a>
+      <div class="nav-links">
+        <a href="../docs/getting-started.html">Docs</a>
+        <a href="../docs/cli.html">CLI</a>
+        <a href="../docs/components.html">Components</a>
+        <a href="../docs/backend.html">Backend</a>
+        <a href="../download/" class="btn-nav">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Changelog</h1>
+      <p>Semua bug fix, fitur baru, dan pembaruan Pinkboba.</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="docs-nav">
+        <a href="../docs/getting-started.html">Getting Started</a>
+        <a href="../docs/cli.html">CLI Reference</a>
+        <a href="../docs/components.html">Frontend</a>
+        <a href="../docs/backend.html">Backend</a>
+        <a href="../docs/templates.html">Templates</a>
+        <a href="../docs/glass.html">Glass</a>
+        <a href="../docs/changelog.html" class="active">Changelog</a>
+      </div>
+
+      <div class="content">
+
+        <h2>v0.1.0 — 28 Mei 2026</h2>
+        <p class="note" style="margin-top:0">Rilis perdana Pinkboba. Total <strong>227 tes</strong> (108 unit × 2 binary + 11 integrasi), 0 failure.</p>
+
+        <h3>Fitur Baru</h3>
+        <ul>
+          <li><strong>DB Admin Studio</strong> — <code>pinkboba admin</code> untuk eksplorasi database SQLite via CLI maupun Web UI (port 9090). Fitur: CRUD rows, search, pagination, SQL editor, table manager (create/drop), dark/light theme, server monitoring.</li>
+          <li><strong>Dokumentasi Website</strong> — pinkboba-docs dengan 7 halaman: Getting Started, CLI Reference (25 frontend + 11 backend commands), Frontend Components, Backend Generator, Templates, Glass Package, Download.</li>
+          <li><strong>227 Test Suite</strong> — 108 unit test (43 admin + 25 backhead generator + 26 UI components + 15 templates + 4 injection + 7 pinkboba file), 11 integration test (scaffold+build, pipeline, component generation).</li>
+        </ul>
+
+        <h3>Bug Fixes</h3>
+        <ul>
+          <li><strong>Fix: <code>pinkboba serve</code> crash saat cargo tidak ada</strong> — Sebelumnya <code>pinkboba serve</code> langsung error jika <code>cargo</code> tidak ada di PATH atau build backend gagal. Sekarang tetap lanjut pakai binary cached di <code>dist/backhed.exe</code> atau fallback ke frontend-only di <code>src/</code>.</li>
+          <li><strong>Fix: <code>pinkboba serve</code> fallback ke port 8080</strong> — Jika backend binary sudah ada, serve sekarang langsung ke full-stack mode di port 3000 tanpa perlu rebuild ulang.</li>
+          <li><strong>Fix: Build access denied</strong> — <code>dist/</code> yang terkunci oleh proses sebelumnya tidak lagi menghentikan seluruh serve process.</li>
+          <li><strong>Fix: Typo dokumentasi</strong> — Semua typo <code>pinkboda</code> → <code>pinkboba</code> dan <code>Creat</code> → <code>Create</code> di dokumentasi telah diperbaiki.</li>
+          <li><strong>Fix: Port conflict</strong> — Jika port 3000 sudah dipakai, tidak crash tapi memberikan pesan yang jelas.</li>
+        </ul>
+
+        <h3>Command Reference</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Command</th><th>Deskripsi</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>new</code></td><td>Buat project dari template (default, minimal, professional, showcase, glass)</td><td class="tag" style="color:var(--pg-success);border-color:var(--pg-success)">Stabil</td></tr>
+              <tr><td><code>add</code></td><td>Tambah package eksternal (glass) dari GitHub registry</td><td class="tag" style="color:var(--pg-success);border-color:var(--pg-success)">Stabil</td></tr>
+              <tr><td><code>remove</code></td><td>Hapus component atau dependency</td><td class="tag" style="color:var(--pg-success);border-color:var(--pg-success)">Stabil</td></tr>
+              <tr><td><code>fb-component</code></td><td>Generate 25 frontend UI components (prefix <code>pb-</code>)</td><td class="tag" style="color:var(--pg-success);border-color:var(--pg-success)">Stabil</td></tr>
+              <tr><td><code>bd-component</code></td><td>Generate 11 backend Rust/Axum components</td><td class="tag" style="color:var(--pg-success);border-color:var(--pg-success)">Stabil</td></tr>
+              <tr><td><code>admin</code></td><td>SQLite database admin studio (CLI + Web UI)</td><td class="tag" style="color:var(--pg-warning);border-color:var(--pg-warning)">Baru</td></tr>
+              <tr><td><code>env</code></td><td>Manage environment variables (.env)</td><td class="tag" style="color:var(--pg-success);border-color:var(--pg-success)">Stabil</td></tr>
+              <tr><td><code>build</code></td><td>Build frontend + backend untuk production ke <code>dist/</code></td><td class="tag" style="color:var(--pg-success);border-color:var(--pg-success)">Stabil</td></tr>
+              <tr><td><code>serve</code></td><td>Development server — full-stack (:3000) atau frontend-only (:8080)</td><td class="tag" style="color:var(--pg-warning);border-color:var(--pg-warning)">Diperbaiki</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Test Results</h3>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin:16px 0">
+          <div class="glass" style="padding:16px 24px;min-width:120px;flex:1">
+            <div style="font-size:1.5rem;font-weight:800;color:var(--pg-success)">108</div>
+            <div style="color:var(--pg-text-muted);font-size:0.8rem">unit (lib.rs)</div>
+          </div>
+          <div class="glass" style="padding:16px 24px;min-width:120px;flex:1">
+            <div style="font-size:1.5rem;font-weight:800;color:var(--pg-success)">108</div>
+            <div style="color:var(--pg-text-muted);font-size:0.8rem">unit (main.rs)</div>
+          </div>
+          <div class="glass" style="padding:16px 24px;min-width:120px;flex:1">
+            <div style="font-size:1.5rem;font-weight:800;color:var(--pg-success)">11</div>
+            <div style="color:var(--pg-text-muted);font-size:0.8rem">integration</div>
+          </div>
+          <div class="glass" style="padding:16px 24px;min-width:120px;flex:1">
+            <div style="font-size:1.5rem;font-weight:800;color:var(--pg-warning)">43</div>
+            <div style="color:var(--pg-text-muted);font-size:0.8rem">admin tests</div>
+          </div>
+        </div>
+
+        <h3>Project Structure</h3>
+        <pre><code>pinkboba/
+├── src/
+│   ├── main.rs                    # CLI entry point (clap)
+│   ├── lib.rs                     # Shared utils
+│   ├── cli.rs                     # CLI argument definitions
+│   ├── pinkboba_file.rs           # .pinkboba file parser
+│   ├── templates.rs               # Project templates
+│   ├── component_generator.rs     # 25 UI component generators
+│   ├── backhead_generator/        # 11 backend component generators
+│   ├── commands/
+│   │   ├── mod.rs                 # Command router
+│   │   ├── admin.rs               # DB Admin Studio (CLI + Web UI)
+│   │   ├── admin/
+│   │   │   ├── api.rs             # REST API untuk web UI admin
+│   │   │   ├── db.rs              # SQLite query executor
+│   │   │   └── frontend.rs        # Admin web UI frontend
+│   │   ├── serve.rs               # Development server
+│   │   ├── build.rs               # Production build
+│   │   └── ...                    # new, add, remove, env, etc.
+│   └── ...
+├── tests/
+│   └── integration_test.rs        # 11 integration tests
+├── README.md                      # Dokumentasi utama
+└── Cargo.toml</code></pre>
+
+        <h3>Dokumentasi</h3>
+        <ul>
+          <li><a href="../docs/getting-started.html">Getting Started</a> — instalasi, frontend quick start, full-stack quick start, DB admin studio</li>
+          <li><a href="../docs/cli.html">CLI Reference</a> — semua command, subcommand, env variables</li>
+          <li><a href="../docs/components.html">Frontend Components</a> — 25 built-in pb-* components + .pinkboba format</li>
+          <li><a href="../docs/backend.html">Backend Generator</a> — 11 bd-component generators lengkap dengan contoh</li>
+          <li><a href="../docs/templates.html">Templates</a> — default, minimal, professional, showcase, glass</li>
+          <li><a href="../docs/glass.html">Glass Package</a> — 27 pg-* glassmorphism components</li>
+          <li><a href="../download/">Download</a> — binary Windows + instalasi via cargo</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p><a href="https://github.com/zulsyam23-dot/pinkboba">GitHub</a> &middot; <a href="../docs/cli.html">CLI Reference</a> &middot; <a href="../docs/changelog.html">Changelog</a> &middot; <a href="../download/">Download</a></p>
+      <p style="margin-top:8px">Built with Pinkboba &middot; &copy; 2026</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
