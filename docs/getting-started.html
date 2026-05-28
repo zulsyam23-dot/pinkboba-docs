@@ -50,7 +50,7 @@
         <pre><code>cargo install pinkboba</code></pre>
         <p>Otherwise, <a href="../download/">download the binary</a> for your platform from GitHub Releases and add it to your <code>PATH</code>.</p>
         <p>Verify the installation:</p>
-        <pre><code>pinkboda --version</code></pre>
+        <pre><code>pinkboba --version</code></pre>
 
         <h2>2. Frontend-Only Project</h2>
         <p>Create a project in seconds — no build tools, no configuration.</p>
@@ -87,7 +87,7 @@ pinkboba fb-component theme --mode dark</code></pre>
         <p>Add a Rust backend with SQLite, JWT auth, and more — all from the CLI.</p>
 
         <div class="glass step">
-          <h3>Creat a project (or use existing)</h3>
+          <h3>Create a project (or use existing)</h3>
           <pre><code>pinkboba new my-api-app
 cd my-api-app</code></pre>
         </div>
@@ -129,7 +129,7 @@ pinkboba bd-component pagination   # Pagination support</code></pre>
           <h3>Run migrations</h3>
           <pre><code>pinkboba bd-component migration create create_users_table
 # Edit migrations/*.sql, then:
-pinkboda bd-component migration run</code></pre>
+pinkboba bd-component migration run</code></pre>
         </div>
 
         <div class="glass step">
@@ -138,11 +138,28 @@ pinkboda bd-component migration run</code></pre>
           <p>Builds the Rust backend (<code>cargo build --release</code>), copies the frontend to <code>src/backhed/static/</code>, and spawns the server on <code>http://localhost:3000</code>. The API routes are served under <code>/api/...</code>.</p>
         </div>
 
+        <h2>4. Database Admin Studio</h2>
+        <p>After running migrations, explore your database with the built-in admin studio:</p>
+
+        <div class="glass step">
+          <h3>Web admin UI</h3>
+          <pre><code>pinkboba admin</code></pre>
+          <p>Opens a web-based SQLite admin at <code>http://localhost:9090</code>. Features: table browser, CRUD, SQL editor, dark/light theme.</p>
+        </div>
+
+        <div class="glass step">
+          <h3>CLI database inspection</h3>
+          <pre><code>pinkboba admin tables
+pinkboba admin table users
+pinkboba admin query "SELECT * FROM users"</code></pre>
+        </div>
+
         <h2>What's Next?</h2>
         <ul>
           <li>Explore all <a href="../docs/cli.html">CLI commands</a></li>
           <li>Browse the <a href="../docs/components.html">25 frontend components</a></li>
           <li>Learn about all <a href="../docs/backend.html">11 backend generators</a></li>
+          <li>Use the <a href="../docs/cli.html#pinkboba-admin">DB Admin Studio</a> <code>pinkboba admin</code></li>
           <li>Check out <a href="../docs/templates.html">template options</a></li>
           <li>Install the <a href="../docs/glass.html">glass package</a> for glassmorphism UI</li>
         </ul>

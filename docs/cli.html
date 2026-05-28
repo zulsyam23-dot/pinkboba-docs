@@ -61,6 +61,7 @@
               <tr><td><code>env</code></td><td>Manage environment variables (.env)</td></tr>
               <tr><td><code>build</code></td><td>Build frontend + backend for production</td></tr>
               <tr><td><code>serve</code></td><td>Start development server</td></tr>
+              <tr><td><code>admin</code></td><td>SQLite database admin studio (CLI + Web UI)</td></tr>
               <tr><td><code>help</code></td><td>Print help information</td></tr>
             </tbody>
           </table>
@@ -97,7 +98,44 @@ Options:
 pinkboba new my-app --template showcase
 pinkboba new my-app --template glass</code></pre>
 
-        <h2>pinkboda add</h2>
+        <h2>pinkboba admin</h2>
+        <p>Built-in SQLite database admin studio. Bisa diakses via browser (web UI) atau langsung dari terminal.</p>
+        <pre><code>pinkboba admin [OPTIONS]
+pinkboba admin &lt;SUBCOMMAND&gt; [OPTIONS]
+
+Options:
+  --db &lt;PATH&gt;  Path to SQLite database file (auto-detect .db files in src/backhed/)</code></pre>
+
+        <h3>Subcommands</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Subcommand</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>serve</code></td><td>Start web admin studio on <code>http://localhost:9090</code>. Web UI: dark/light theme, CRUD rows, search, pagination, SQL editor, table manager (create/drop), server monitoring.</td></tr>
+              <tr><td><code>tables</code></td><td>List all tables in the database (CLI)</td></tr>
+              <tr><td><code>table &lt;name&gt;</code></td><td>Show schema + preview 20 rows for a table</td></tr>
+              <tr><td><code>query "&lt;SQL&gt;"</code></td><td>Run arbitrary SQL and display results</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <pre><code># Web admin studio
+pinkboba admin
+pinkboba admin serve                   # same as above
+pinkboba admin serve --port 8080       # custom port
+
+# CLI database inspection
+pinkboba admin tables                  # list all tables
+pinkboba admin table users             # schema + preview
+pinkboba admin table users --db my.db  # specify db path
+
+# CLI SQL runner
+pinkboba admin query "SELECT * FROM users"
+pinkboba admin query "SELECT name, email FROM users WHERE id = 1"</code></pre>
+
+        <h2>pinkboba add</h2>
         <p>Adds a package from the registry to the current project.</p>
         <pre><code>pinkboba add &lt;PACKAGE&gt; [--version &lt;VERSION&gt;]
 
@@ -139,7 +177,7 @@ pinkboba remove dependency glass</code></pre>
           </table>
         </div>
 
-        <pre><code>pinkboda fb-component button --variant danger
+        <pre><code>pinkboba fb-component button --variant danger
 pinkboba fb-component navbar --style hamburger
 pinkboba fb-component card
 pinkboba fb-component theme --mode dark</code></pre>
