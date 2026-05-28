@@ -1,11 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Copy buttons
+  // Copy buttons — wrap pre to keep button outside scroll area
   document.querySelectorAll('pre').forEach(block => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-wrapper';
+    block.parentNode.insertBefore(wrapper, block);
+    wrapper.appendChild(block);
+
     const btn = document.createElement('button');
     btn.className = 'copy-btn';
     btn.textContent = 'Copy';
-    block.style.position = 'relative';
-    block.appendChild(btn);
+    wrapper.appendChild(btn);
+
     btn.addEventListener('click', async () => {
       const code = block.querySelector('code') || block;
       try {
@@ -21,6 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Hamburger nav toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    // Close nav on link click (mobile)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+  }
 
   // Active docs nav
   const path = window.location.pathname;

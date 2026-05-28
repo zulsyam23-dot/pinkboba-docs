@@ -530,6 +530,13 @@ code {
   word-break: break-word;
 }
 
+.code-wrapper {
+  position: relative;
+}
+.code-wrapper pre {
+  margin-bottom: 0;
+}
+
 .copy-btn {
   position: absolute;
   top: 10px;
@@ -544,8 +551,9 @@ code {
   transition: all var(--pg-transition);
   font-family: var(--pg-font);
   opacity: 0;
+  z-index: 2;
 }
-pre:hover .copy-btn { opacity: 1; }
+.code-wrapper:hover .copy-btn { opacity: 1; }
 .copy-btn:focus-visible { opacity: 1; }
 .copy-btn:hover {
   color: var(--pg-text);
@@ -573,7 +581,7 @@ pre:hover .copy-btn { opacity: 1; }
   font-weight: var(--pg-font-weight-medium);
   font-family: var(--pg-mono);
 }
-.code-header + pre {
+.code-header + .code-wrapper pre {
   margin-top: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
