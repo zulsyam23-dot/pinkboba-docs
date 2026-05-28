@@ -84,4 +84,25 @@ document.addEventListener('DOMContentLoaded', () => {
     el.classList.add('fade-in');
     observer.observe(el);
   });
+
+  // Sakura falling petals — once on page load
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    const petalCount = 18;
+    const container = document.createElement('div');
+    container.className = 'sakura-container';
+    document.body.prepend(container);
+
+    for (let i = 0; i < petalCount; i++) {
+      const petal = document.createElement('div');
+      petal.className = 'sakura-petal';
+      const size = 8 + Math.random() * 10;
+      petal.style.width = size + 'px';
+      petal.style.height = (size * 1.15) + 'px';
+      petal.style.left = Math.random() * 100 + '%';
+      petal.style.animationDuration = (6 + Math.random() * 8) + 's';
+      petal.style.animationDelay = (Math.random() * 5) + 's';
+      container.appendChild(petal);
+    }
+  }
 });
